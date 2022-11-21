@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content='width=device-width'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
+  {% load static %}
+  <link href="{% static 'main/css/asdasd.css'%}" rel="stylesheet">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header  id="header" class='header'>
+        <div class="header-inner">
+          <a class="header-link" href="{% url 'main:section' %}">
+            <div class="header-logo-full">
+              <img src="{% static 'main/img/qwe.png' %}">
+              <p class="header-logo-text">Ez informatics</p>
+            </div>
+          </a>
+          <a class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+          <ul class="nav">
+            
+            <a id="{% if request.path == '/section' %}current{% endif %}" class='nav-link' href="{% url 'main:section' %}">Разделы</a>
+            <a id="{% if request.path == '/tests' %}current{% endif %}" class='nav-link' href="{% url 'main:tests' %}">Тесты</a>
+            {% if user.is_authenticated %}
+            
+              <a id="{% if request.path == '/about' %}current{% endif %}" class='nav-link' href="{% url 'main:about' %}">{{user}}</a>
+            
+            {% else %} 
+              <a class='nav-link' href="{% url 'main:authenticate' %}">Вход</a>
+              <b><a class='nav-link' href="{% url 'main:registration' %}">Регистрация</a></b>
+             
+
+            {% endif %}
+        </ul>
+        </div>
+    </header>
+
+    <content class='content'>
+      <div class="conteiner">
+        {% block content %}{% endblock %}
+      </div>
+    </content>
+
+  <script>
+    window.onscroll = function() {myFunction()};
+
+    function myFunction() {
+      if (document.documentElement.scrollTop > 12) {
+        document.getElementById("header").className = "header-fixed";
+      } else {
+        document.getElementById("header").className = "header";
+      }
+    }
+    let menuBtn = document.querySelector('.burger');
+    let menu = document.querySelector('.nav');
+    menuBtn.addEventListener('click', function(){
+      menuBtn.classList.toggle('active');
+      menu.classList.toggle('active');
+    })
+
+  </script>
+</body>
+</html>

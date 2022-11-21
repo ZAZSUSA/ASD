@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% block title %}
+  {{ slug }}
+{% endblock %}
+{% block content %}
+  <form action="/tests/{{slug}}/leave_test" method="POST">
+    {% csrf_token %}
+  	{% for test in tests %}
+    
+      <div class="form-box">
+          <h3 class="form-text-h">{{ test.question }}</h1>
+            {% if test.img %}
+              <img src="{{test.img.url}}"><br>
+            {% endif %}
+          
+          <input class="form-input" id="{{ test.question }}{{ test.answer1 }}" type="radio" name="{{ test.question }}" value="{{ test.answer1 }}" required><label for="{{ test.question }}{{ test.answer1 }}">A) {{ test.answer1 }}</label><br>
+          <input class="form-input" id="{{ test.question }}{{ test.answer2 }}" type="radio" name="{{ test.question }}" value="{{ test.answer2 }}"><label for="{{ test.question }}{{ test.answer2 }}">B) {{ test.answer2 }}</label><br>
+          <input class="form-input" id="{{ test.question }}{{ test.answer3 }}" type="radio" name="{{ test.question }}" value="{{ test.answer3 }}"><label for="{{ test.question }}{{ test.answer3 }}">C) {{ test.answer3 }}</label><br>
+          <input class="form-input" id="{{ test.question }}{{ test.answer4 }}" type="radio" name="{{ test.question }}" value="{{ test.answer4 }}"><label for="{{ test.question }}{{ test.answer4 }}">D) {{ test.answer4 }}</label><br>
+          <input class="form-input" id="{{ test.question }}{{ test.answer5 }}" type="radio" name="{{ test.question }}" value="{{ test.answer5 }}"><label for="{{ test.question }}{{ test.answer5 }}">E) {{ test.answer5 }}</label><br>
+      </div>
+    {% endfor %}
+    <div class="form">
+      <button class="btn" type="submit">Отправить</button>
+    </div>
+  </form>
+{% endblock %}

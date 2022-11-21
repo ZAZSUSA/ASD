@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+  <div class="content-boxes">
+{% for el in article %}
+  
+    <div class="content-box">
+      <a href="{{el.get_test_url }}" class='content-box-link'>
+      <img class="content-box-img" src="{{ el.article_img1.url }}" alt="Картинка">
+      <p class="content-h2">Тест {{ el.article_title }}</p>
+      </a>
+    </div>
+    
+    
+{% endfor %}
+  </div>
+{% endblock %}

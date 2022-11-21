@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% block title %}
+  {{ object.article_title }}
+{% endblock %}
+{% block content %}
+
+    <div class="article-box">
+          <h1 class="article-box-text-h">{{ object.article_title }}</h1>
+          <p class="article-box-text">{{ object.article_text1 }}</p>
+          {% if object.article_text2 %}
+          <p class="article-box-text">{{ object.article_text2 }}</p>
+          {% endif %}
+          {% if object.article_text3 %}
+          <p class="article-box-text">{{ object.article_text3 }}</p>
+          {% endif %}
+          {% if object.article_text4 %}
+          <p class="article-box-text">{{ object.article_text4 }}</p>
+          {% endif %}
+          {% if object.article_text5 %}
+          <p class="article-box-text">{{ object.article_text5 }}</p>
+          {% endif %}
+          {% if object.article_text6 %}
+          <p class="article-box-text">{{ object.article_text6 }}</p>
+          {% endif %}
+          {% if object.article_text7 %}
+          <p class="article-box-text">{{ object.article_text7 }}</p>
+          {% endif %}
+          {% if object.article_text8 %}
+          <p class="article-box-text">{{ object.article_text8 }}</p>
+          {% endif %}
+          {% if object.article_text9 %}
+          <p class="article-box-text">{{ object.article_text9 }}</p>
+          {% endif %}
+          {% if object.article_text10 %}
+          <p class="article-box-text">{{ object.article_text10 }}</p>
+          {% endif %}
+
+          <div class="article-box-link-shell-1">
+            <a class="article-box-link-3" href="{{ object.get_test_url }}"> <h3>Пройти тест по теме?</h3></a>
+          </div>   
+    </div>   
+    <div class="article-commentbox">
+      
+      {% if request.user.is_authenticated %}
+      
+      <div class="article-comment-input">
+      <form action="{{object.get_absolute_url }}/leave_comment" method="POST">
+          {% csrf_token %}
+          <input required placeholder="Текст комментария" name="text"></textarea><br>
+          <button class="btn" type="submit">Оставить комментарий</button>
+        </form>
+     
+      {% else %}
+        <p>Чтобы оставлять комментарии нужно быть зерегистрированным</p>
+      {% endif %}
+        {% if comments %}
+                {% for comment in comments %}
+                <div class="article-comment">
+                  <h4 class="article-comment-h">{{ comment.author_name }}</h4>
+                  <p class="article-comment-p">{{ comment.text }}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>Нет комментариев</p>
+                {% endif %}
+       </div>
+        
+        
+{% endblock %}

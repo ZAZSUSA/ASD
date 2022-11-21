@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% block title %}
+  Аутентификая
+{% endblock %}
+{% block content %}
+  <form action="authenticate/result" method="POST">
+    {% csrf_token %}
+    <input class="input" placeholder="Введите имя пользователя" type="text" name="username"><br>
+    <input class="input" placeholder="Введите пароль" type="password" name="password"><br>
+    <p>{{ error }}</p>
+    <button class="btn" type="submit">Войти</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% block title %}
+  Регистация
+{% endblock %}
+{% block content %}
+  <form action="/registration_result" method="POST">
+    {% csrf_token %}
+    <input class="input" placeholder="Введите имя пользователя" type="text" name="username"><br>
+    <input class="input" placeholder="Введите почту" type="text" name="userpost"><br>
+    <input class="input" placeholder="Введите пароль" type="password" name="password1"><br>
+    <input class="input" placeholder="Введите пароль повторно" type="password" name="password2"><br>
+    <button class="btn" type="submit">Зарегестрироваться</button><br>
+    <p>{{ error }}</p>
+  </form>
+{% endblock %}

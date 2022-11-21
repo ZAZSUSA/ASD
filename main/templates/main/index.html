@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+	<div class="content-boxes">
+		<div class="content-box">
+			<a href="{% url 'main:tests' %}" class="content-box-link">
+			{% load static %}
+			<img class="content-box-img" src="{% static 'main/img/main1.jfif'%}" alt="Картинка">
+			<p class="content-box-text-1">Пройди тест и оцени свой уровень знаний</p>
+			
+				</a>
+			
+		</div>
+		<div class="content-box">
+			<a href="{% url 'main:section' %}" class="content-box-link">
+			<img class="content-box-img" src="{% static 'main/img/main2.jpg'%}" alt="Картинка">
+			<p class="content-box-text">Подучить материал?</p>
+			
+			</a>
+		</div>
+		<div class="content-box">
+			<a href="{% url 'main:tests' %}" class="content-box-link">
+			<img class="content-box-img" src="{% static 'main/img/main3.png'%}" alt="Картинка">
+			<p class="content-box-text">Пора приступить к практике?</p>
+			
+				<a href="{% url 'main:tests' %}" class="content-box-link"></a>
+		</div>
+	</div>
+
+{% endblock %}

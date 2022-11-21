@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block title %}
+  {{ slug }}
+{% endblock %}
+{% block content %}
+    <div class="form-box">
+      <p class="form-bigbox-text-3">Правильно решено {{ c }}/{{ m }}</p>
+      <a class="" href="/tests/{{slug}}">Пересдать?</a>
+    </div>
+  	{% for choice in choices %}
+      {% if user == choice.ip %}
+        {% if choice.slug == slug %}
+          {% if choice.correct == choice.answer %}
+
+            <div class="form-box-true">
+              <h3>{{ choice.question }}</h2>
+              <p>Ваш ответ: {{ choice.mark }} {{ choice.answer }}</p>
+              <p>Правильный ответ!</p>
+            </div>
+
+          {% else %}
+
+            <div class="form-box-false">
+              <h2>{{ choice.question }}</h2>
+              <p>Ваш ответ: {{ choice.mark }} {{ choice.answer }}</p>
+              <p>Правильный ответ: {{choice.correct}}</p>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+      
+{% endblock %}
